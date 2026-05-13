@@ -215,6 +215,7 @@ body {
     transition: var(--transition);
     overflow: hidden;
     animation: fadeInUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+    gap: 1.5rem; /* Better spacing control */
 }
 
 .link-card::before {
@@ -244,9 +245,9 @@ body {
 .link-card i {
     width: 24px;
     height: 24px;
-    margin-right: 1.5rem;
     color: var(--accent-color);
     transition: var(--transition);
+    flex-shrink: 0;
 }
 
 #link-calendar i {
