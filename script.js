@@ -10,21 +10,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 3. Robust Security: Block Developer Tools and Prevent Content Copying
     
-    const warningHTML = '<div style="display:flex;justify-content:center;align-items:center;height:100vh;background-color:#020203;color:white;font-family:sans-serif;text-align:center;padding:20px;position:fixed;top:0;left:0;width:100%;z-index:999999;"><div><h1 style="font-size:2rem;margin-bottom:1rem;color:#3b82f6;">Acceso Protegido</h1><p style="font-size:1.1rem;opacity:0.8;">Por razones de seguridad y derechos de autor, las herramientas de desarrollo están deshabilitadas.</p></div></div>';
+    const warningHTML = '<div id="security-warning" style="display:flex;justify-content:center;align-items:center;height:100vh;width:100vw;background-color:#020203;color:white;font-family:sans-serif;text-align:center;padding:20px;position:fixed;top:0;left:0;z-index:999999999;"><div><h1 style="font-size:2.5rem;margin-bottom:1rem;color:#3b82f6;font-weight:bold;">Acceso Protegido</h1><p style="font-size:1.2rem;opacity:0.8;">Por razones de seguridad y protección de código, las herramientas de desarrollo están deshabilitadas.</p></div></div>';
 
     let isProtected = false;
 
     const triggerProtection = () => {
         if (isProtected) return;
         isProtected = true;
-        // Destruir el DOM por completo instantáneamente
+        
+        // Destruir el DOM por completo
         document.body.innerHTML = warningHTML;
         document.head.innerHTML = '';
         
-        // Redirigir para matar el proceso actual
-        setTimeout(() => {
-            window.location.replace("about:blank");
-        }, 100);
+        // Prevenir que el usuario elimine la advertencia desde la consola
+        const observer = new MutationObserver(() => {
+            if (!document.getElementById('security-warning')) {
+                document.body.innerHTML = warningHTML;
+            }
+        });
+        observer.observe(document.body, { childList: true, subtree: true });
     };
 
     // Block Keyboard Shortcuts
@@ -67,7 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     setInterval(() => {
         detectDevToolsDocked();
-        console.log('%c', devtoolsDetector);
+        console.dir(devtoolsDetector);
         console.clear();
     }, 500);
 
