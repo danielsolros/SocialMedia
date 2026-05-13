@@ -463,13 +463,16 @@ body {
     transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+/* Base card enhancement for glow and animation */
 .link-card:hover {
     transform: translateY(-8px) scale(1.03);
     background: rgba(255, 255, 255, 0.15);
-    border-color: rgba(255, 255, 255, 0.3);
+    border-color: rgba(59, 130, 246, 0.5);
+    /* Single Unified Glow (Blue) */
     box-shadow: 
         inset 0 1px 2px rgba(255, 255, 255, 0.4),
-        0 20px 40px -15px rgba(0, 0, 0, 0.6);
+        0 20px 40px -15px rgba(0, 0, 0, 0.6),
+        0 0 20px rgba(59, 130, 246, 0.2);
 }
 
 .link-card:active {
@@ -482,16 +485,10 @@ body {
 .link-card:nth-child(3) { animation-delay: 0.35s; }
 .link-card:nth-child(4) { animation-delay: 0.45s; }
 
-/* Glow effect refinement - Merged with Liquid Glass Highlights */
-#link-calendar:hover { box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.4), 0 20px 40px -10px rgba(59, 130, 246, 0.5), 0 0 25px rgba(59, 130, 246, 0.3); }
-#link-linkedin:hover { box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.4), 0 20px 40px -10px rgba(10, 102, 194, 0.6), 0 0 25px rgba(10, 102, 194, 0.4); }
-#link-email:hover { box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.4), 0 20px 40px -10px rgba(234, 67, 53, 0.5), 0 0 25px rgba(234, 67, 53, 0.3); }
-#link-instagram:hover { box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.4), 0 20px 40px -10px rgba(225, 48, 108, 0.5), 0 0 25px rgba(225, 48, 108, 0.3); }
-
-/* Ensure icons scale on hover */
+/* Unified Icon Scaling */
 .link-card:hover .icon-svg {
     transform: scale(1.15);
-    filter: drop-shadow(0 0 8px currentColor);
+    filter: drop-shadow(0 0 5px rgba(59, 130, 246, 0.5));
 }
 
 .link-card .icon-svg {
