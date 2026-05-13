@@ -10,17 +10,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 3. Robust Security: Block Developer Tools and Prevent Content Copying
     
-    const warningHTML = '<div style="display:flex;justify-content:center;align-items:center;height:100vh;background-color:#020203;color:white;font-family:sans-serif;text-align:center;padding:20px;position:fixed;top:0;left:0;width:100%;z-index:9999;"><div><h1 style="font-size:2rem;margin-bottom:1rem;color:#3b82f6;">Acceso Protegido</h1><p style="font-size:1.1rem;opacity:0.8;">Por razones de seguridad y derechos de autor, las herramientas de desarrollo están deshabilitadas.</p></div></div>';
+    const warningHTML = '<div style="display:flex;justify-content:center;align-items:center;height:100vh;background-color:#020203;color:white;font-family:sans-serif;text-align:center;padding:20px;position:fixed;top:0;left:0;width:100%;z-index:999999;"><div><h1 style="font-size:2rem;margin-bottom:1rem;color:#3b82f6;">Acceso Protegido</h1><p style="font-size:1.1rem;opacity:0.8;">Por razones de seguridad y derechos de autor, las herramientas de desarrollo están deshabilitadas.</p></div></div>';
+
+    let isProtected = false;
 
     const triggerProtection = () => {
-        // Destruye el DOM por completo
-        document.write(warningHTML);
-        document.close();
-        // Redirige a una página en blanco para matar el proceso actual
-        window.location.replace("about:blank");
+        if (isProtected) return;
+        isProtected = true;
+        // Destruir el DOM por completo instantáneamente
+        document.body.innerHTML = warningHTML;
+        document.head.innerHTML = '';
+        
+        // Redirigir para matar el proceso actual
+        setTimeout(() => {
+            window.location.replace("about:blank");
+        }, 100);
     };
 
-    // Block Keyboard Shortcuts and Wipe DOM instantly
+    // Block Keyboard Shortcuts
     window.addEventListener('keydown', (e) => {
         if (e.keyCode === 123 || 
             ((e.ctrlKey || e.metaKey) && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74 || e.keyCode === 67)) ||
@@ -39,7 +46,8 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    const detectDevTools = () => {
+    // Detect DevTools via Window Size (Docked)
+    const detectDevToolsDocked = () => {
         const threshold = 160;
         const widthDiff = window.outerWidth - window.innerWidth > threshold;
         const heightDiff = window.outerHeight - window.innerHeight > threshold;
@@ -49,24 +57,21 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    // Trampa de debugger agresiva para detectar DevTools desacopladas (detached)
-    const debuggerTrap = () => {
-        const start = performance.now();
-        debugger;
-        const end = performance.now();
-        if (end - start > 100) {
+    // Detect DevTools via Console (Undocked)
+    const devtoolsDetector = new Image();
+    Object.defineProperty(devtoolsDetector, 'id', {
+        get: function () {
             triggerProtection();
         }
-    };
+    });
 
-    // Bucle constante
     setInterval(() => {
-        detectDevTools();
-        debuggerTrap();
+        detectDevToolsDocked();
+        console.log('%c', devtoolsDetector);
+        console.clear();
     }, 500);
 
-    // También al redimensionar
-    window.addEventListener('resize', detectDevTools);
+    window.addEventListener('resize', detectDevToolsDocked);
 
     // 4. Parallax effect for blobs based on mouse movement
     document.addEventListener('mousemove', (e) => {
