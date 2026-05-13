@@ -13,7 +13,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
     <!-- Lucide Icons (via CDN) -->
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://unpkg.com/lucide@0.400.0/dist/umd/lucide.js"></script>
 
     <link rel="stylesheet" href="style.css?v=1.2">
 </head>
@@ -67,6 +67,17 @@
     </main>
 
     <script src="script.js"></script>
+    <script>
+        // Use a more robust initialization
+        function initIcons() {
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+            } else {
+                setTimeout(initIcons, 100);
+            }
+        }
+        initIcons();
+    </script>
 </body>
 
 </html>

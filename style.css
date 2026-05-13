@@ -248,6 +248,7 @@ body {
     color: var(--accent-color);
     transition: var(--transition);
     flex-shrink: 0;
+    margin-right: 1.5rem; /* Fallback for gap */
 }
 
 #link-calendar i {
