@@ -463,16 +463,16 @@ body {
     transform: translateY(-2px) scale(0.98);
 }
 
-/* Glow effect refinement */
-#link-calendar:hover { box-shadow: 0 15px 35px -10px rgba(59, 130, 246, 0.3), 0 0 15px rgba(59, 130, 246, 0.2); }
-#link-linkedin:hover { box-shadow: 0 15px 35px -10px rgba(10, 102, 194, 0.3), 0 0 15px rgba(10, 102, 194, 0.2); }
-#link-email:hover { box-shadow: 0 15px 35px -10px rgba(234, 67, 53, 0.3), 0 0 15px rgba(234, 67, 53, 0.2); }
-#link-instagram:hover { box-shadow: 0 15px 35px -10px rgba(225, 48, 108, 0.3), 0 0 15px rgba(225, 48, 108, 0.2); }
+/* Glow effect refinement - Increased intensity */
+#link-calendar:hover { box-shadow: 0 20px 40px -10px rgba(59, 130, 246, 0.5), 0 0 25px rgba(59, 130, 246, 0.3); }
+#link-linkedin:hover { box-shadow: 0 20px 40px -10px rgba(10, 102, 194, 0.6), 0 0 25px rgba(10, 102, 194, 0.4); }
+#link-email:hover { box-shadow: 0 20px 40px -10px rgba(234, 67, 53, 0.5), 0 0 25px rgba(234, 67, 53, 0.3); }
+#link-instagram:hover { box-shadow: 0 20px 40px -10px rgba(225, 48, 108, 0.5), 0 0 25px rgba(225, 48, 108, 0.3); }
 
 /* Ensure icons scale on hover */
 .link-card:hover .icon-svg {
-    transform: scale(1.1);
-    filter: drop-shadow(0 0 5px currentColor);
+    transform: scale(1.15);
+    filter: drop-shadow(0 0 8px currentColor);
 }
 
 .link-card .icon-svg {
