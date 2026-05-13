@@ -241,6 +241,8 @@ body {
 .link-card:nth-child(1) { animation-delay: 0.1s; }
 .link-card:nth-child(2) { animation-delay: 0.2s; }
 .link-card:nth-child(3) { animation-delay: 0.3s; }
+.link-card:nth-child(4) { animation-delay: 0.4s; }
+.link-card:nth-child(5) { animation-delay: 0.5s; }
 
 .link-card i, .link-card .icon-svg {
     width: 24px;
@@ -253,6 +255,14 @@ body {
 
 #link-calendar i, #link-calendar .icon-svg {
     color: var(--accent-tertiary); /* Pink/Purple */
+}
+
+#link-whatsapp i, #link-whatsapp .icon-svg {
+    color: #25D366; /* WhatsApp Green */
+}
+
+#link-email i, #link-email .icon-svg {
+    color: #3b82f6; /* Email Blue */
 }
 
 #link-instagram i, #link-instagram .icon-svg {
@@ -329,8 +339,9 @@ body {
 }
 
 .social-icons a:nth-child(1) { animation-delay: 0s; }
-.social-icons a:nth-child(2) { animation-delay: 0.5s; }
-.social-icons a:nth-child(3) { animation-delay: 1s; }
+.social-icons a:nth-child(2) { animation-delay: 0.2s; }
+.social-icons a:nth-child(3) { animation-delay: 0.4s; }
+.social-icons a:nth-child(4) { animation-delay: 0.6s; }
 
 @keyframes floatIcon {
     0%, 100% { transform: translateY(0); }
@@ -341,6 +352,12 @@ body {
     color: var(--accent-tertiary);
     transform: translateY(-8px) scale(1.25);
     filter: drop-shadow(0 0 10px rgba(236, 72, 153, 0.5));
+}
+
+.social-icons a[aria-label="Correo"]:hover {
+    color: #3b82f6;
+    transform: translateY(-8px) scale(1.25);
+    filter: drop-shadow(0 0 10px rgba(59, 130, 246, 0.5));
 }
 
 .social-icons a[aria-label="Instagram"]:hover {
