@@ -8,24 +8,25 @@ document.addEventListener('DOMContentLoaded', () => {
         return false;
     });
 
-    // 3. Robust Security: Block Developer Tools and View Source
+    // 3. Robust Security: Block Developer Tools, View Source and Debugger Trap
     window.addEventListener('keydown', (e) => {
-        // F12
-        if (e.keyCode === 123) {
-            e.preventDefault();
-            return false;
-        }
-        // Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+Shift+C (Inspect/Console)
-        if ((e.ctrlKey || e.metaKey) && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74 || e.keyCode === 67)) {
-            e.preventDefault();
-            return false;
-        }
-        // Ctrl+U (View Source) and Ctrl+S (Save)
-        if ((e.ctrlKey || e.metaKey) && (e.keyCode === 85 || e.keyCode === 83)) {
+        if (e.keyCode === 123 || 
+            ((e.ctrlKey || e.metaKey) && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74 || e.keyCode === 67)) ||
+            ((e.ctrlKey || e.metaKey) && (e.keyCode === 85 || e.keyCode === 83))) {
             e.preventDefault();
             return false;
         }
     }, true);
+
+    // Debugger Trap: Freezes the console if opened
+    setInterval(() => {
+        const startTime = performance.now();
+        debugger;
+        const endTime = performance.now();
+        if (endTime - startTime > 100) {
+            document.body.innerHTML = '<div style="display:flex;justify-content:center;align-items:center;height:100vh;color:white;font-family:sans-serif;text-align:center;padding:20px;"><h1>Acceso Protegido</h1><p>Por razones de seguridad y derechos de autor, las herramientas de desarrollo están deshabilitadas.</p></div>';
+        }
+    }, 1000);
 
     // 4. Parallax effect for blobs based on mouse movement
     document.addEventListener('mousemove', (e) => {
