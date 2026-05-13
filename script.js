@@ -21,11 +21,17 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // 4. Parallax effect for blobs based on mouse movement
+    // 4. Parallax effect for blobs and Glow Cursor
+    const cursorGlow = document.getElementById('cursor-glow');
+    
     document.addEventListener('mousemove', (e) => {
-        const x = e.clientX / window.innerWidth;
-        const y = e.clientY / window.innerHeight;
+        const mouseX = e.clientX;
+        const mouseY = e.clientY;
+        
+        const x = mouseX / window.innerWidth;
+        const y = mouseY / window.innerHeight;
 
+        // Move blobs
         const blobs = document.querySelectorAll('.blob');
         blobs.forEach((blob, index) => {
             const speed = (index + 1) * 30;
@@ -33,6 +39,12 @@ document.addEventListener('DOMContentLoaded', () => {
             const yOffset = (y - 0.5) * speed;
             blob.style.transform = `translate(${xOffset}px, ${yOffset}px)`;
         });
+
+        // Move Glow Cursor
+        if (cursorGlow) {
+            cursorGlow.style.left = `${mouseX}px`;
+            cursorGlow.style.top = `${mouseY}px`;
+        }
     });
 
     // 5. Staggered link cards appearance (already handled by CSS delay, but ensuring here)
