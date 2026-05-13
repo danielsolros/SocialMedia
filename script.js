@@ -8,12 +8,12 @@ document.addEventListener('DOMContentLoaded', () => {
         return false;
     });
 
-    // 3. Block common shortcuts for saving/copying
+    // 3. Block common shortcuts for saving/copying and Inspect Element
     document.addEventListener('keydown', (e) => {
-        // Ctrl+S, Ctrl+U, Ctrl+Shift+I, F12
+        // Ctrl+S, Ctrl+U, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+Shift+C, F12
         if (
             (e.ctrlKey && (e.key === 's' || e.key === 'u')) ||
-            (e.ctrlKey && e.shiftKey && e.key === 'i') ||
+            (e.ctrlKey && e.shiftKey && (e.key === 'i' || e.key === 'j' || e.key === 'c' || e.key === 'I' || e.key === 'J' || e.key === 'C')) ||
             e.key === 'F12'
         ) {
             e.preventDefault();
