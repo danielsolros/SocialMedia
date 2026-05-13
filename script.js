@@ -8,18 +8,24 @@ document.addEventListener('DOMContentLoaded', () => {
         return false;
     });
 
-    // 3. Block common shortcuts for saving/copying and Inspect Element
-    document.addEventListener('keydown', (e) => {
-        // Ctrl+S, Ctrl+U, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+Shift+C, F12
-        if (
-            (e.ctrlKey && (e.key === 's' || e.key === 'u')) ||
-            (e.ctrlKey && e.shiftKey && (e.key === 'i' || e.key === 'j' || e.key === 'c' || e.key === 'I' || e.key === 'J' || e.key === 'C')) ||
-            e.key === 'F12'
-        ) {
+    // 3. Robust Security: Block Developer Tools and View Source
+    window.addEventListener('keydown', (e) => {
+        // F12
+        if (e.keyCode === 123) {
             e.preventDefault();
             return false;
         }
-    });
+        // Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+Shift+C (Inspect/Console)
+        if ((e.ctrlKey || e.metaKey) && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74 || e.keyCode === 67)) {
+            e.preventDefault();
+            return false;
+        }
+        // Ctrl+U (View Source) and Ctrl+S (Save)
+        if ((e.ctrlKey || e.metaKey) && (e.keyCode === 85 || e.keyCode === 83)) {
+            e.preventDefault();
+            return false;
+        }
+    }, true);
 
     // 4. Parallax effect for blobs based on mouse movement
     document.addEventListener('mousemove', (e) => {
