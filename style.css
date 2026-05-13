@@ -242,7 +242,7 @@ body {
 .link-card:nth-child(2) { animation-delay: 0.2s; }
 .link-card:nth-child(3) { animation-delay: 0.3s; }
 
-.link-card i {
+.link-card i, .link-card .icon-svg {
     width: 24px;
     height: 24px;
     color: var(--accent-color);
@@ -251,15 +251,15 @@ body {
     margin-right: 1.5rem; /* Fallback for gap */
 }
 
-#link-calendar i {
+#link-calendar i, #link-calendar .icon-svg {
     color: var(--accent-tertiary); /* Pink/Purple */
 }
 
-#link-instagram i {
+#link-instagram i, #link-instagram .icon-svg {
     color: #E4405F; /* Instagram Official Pink */
 }
 
-#link-linkedin i {
+#link-linkedin i, #link-linkedin .icon-svg {
     color: #0A66C2; /* LinkedIn Official Blue */
 }
 
@@ -321,7 +321,7 @@ body {
     position: relative;
 }
 
-.social-icons a i {
+.social-icons a i, .social-icons a .icon-svg {
     width: 32px;
     height: 32px;
     transition: var(--transition);
