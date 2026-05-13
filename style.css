@@ -327,6 +327,12 @@ body {
     transition: var(--transition);
 }
 
+.social-icons a[aria-label="Calendario"]:hover {
+    color: var(--accent-tertiary);
+    transform: translateY(-8px) scale(1.25);
+    filter: drop-shadow(0 0 10px rgba(236, 72, 153, 0.5));
+}
+
 .social-icons a[aria-label="Instagram"]:hover {
     color: #E4405F;
     transform: translateY(-8px) scale(1.25);
