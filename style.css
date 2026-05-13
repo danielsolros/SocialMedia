@@ -413,6 +413,72 @@ body {
     to { opacity: 1; transform: translateY(0); }
 }
 
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 20px;
+    border: 2px solid transparent;
+    background-clip: content-box;
+    transition: background 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(59, 130, 246, 0.5);
+}
+
+/* Link Cards: Animation & Effects */
+.link-card {
+    position: relative;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 0.8s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Staggered Delays */
+.link-card:nth-child(1) { animation-delay: 0.15s; }
+.link-card:nth-child(2) { animation-delay: 0.25s; }
+.link-card:nth-child(3) { animation-delay: 0.35s; }
+.link-card:nth-child(4) { animation-delay: 0.45s; }
+
+.link-card:hover {
+    transform: translateY(-6px) scale(1.02);
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(59, 130, 246, 0.5);
+    box-shadow: 
+        0 15px 35px -10px rgba(0, 0, 0, 0.5),
+        0 0 20px rgba(59, 130, 246, 0.2);
+}
+
+.link-card:active {
+    transform: translateY(-2px) scale(0.98);
+}
+
+/* Glow effect refinement */
+#link-calendar:hover { box-shadow: 0 15px 35px -10px rgba(59, 130, 246, 0.3), 0 0 15px rgba(59, 130, 246, 0.2); }
+#link-linkedin:hover { box-shadow: 0 15px 35px -10px rgba(10, 102, 194, 0.3), 0 0 15px rgba(10, 102, 194, 0.2); }
+#link-email:hover { box-shadow: 0 15px 35px -10px rgba(234, 67, 53, 0.3), 0 0 15px rgba(234, 67, 53, 0.2); }
+#link-instagram:hover { box-shadow: 0 15px 35px -10px rgba(225, 48, 108, 0.3), 0 0 15px rgba(225, 48, 108, 0.2); }
+
+/* Ensure icons scale on hover */
+.link-card:hover .icon-svg {
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 5px currentColor);
+}
+
+.link-card .icon-svg {
+    transition: all 0.3s ease;
+}
+
 @keyframes fadeInUp {
     from { 
         opacity: 0; 
