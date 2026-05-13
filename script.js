@@ -61,17 +61,33 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    // Detect DevTools via Console (Undocked)
-    const devtoolsDetector = new Image();
-    Object.defineProperty(devtoolsDetector, 'id', {
-        get: function () {
-            triggerProtection();
-        }
+    // Detect DevTools via Console Getters (Undocked / Brave bypass)
+    const devtoolsImage = new Image();
+    Object.defineProperty(devtoolsImage, 'id', {
+        get: function () { triggerProtection(); }
     });
+
+    const devtoolsDate = new Date();
+    devtoolsDate.toString = function() {
+        triggerProtection();
+        return '';
+    };
+
+    const devtoolsRegex = /x/;
+    devtoolsRegex.toString = function() {
+        triggerProtection();
+        return '';
+    };
 
     setInterval(() => {
         detectDevToolsDocked();
-        console.dir(devtoolsDetector);
+        
+        // Múltiples trampas de consola para burlar los escudos de Brave (Brave Shields)
+        console.log('%c', devtoolsImage);
+        console.dir(devtoolsImage);
+        console.log(devtoolsDate);
+        console.log(devtoolsRegex);
+        console.table([{ check: devtoolsImage }]);
         console.clear();
     }, 500);
 
