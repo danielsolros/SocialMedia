@@ -101,7 +101,7 @@ body {
 /* Header Section */
 .profile-header {
     text-align: center;
-    animation: fadeInDown 1.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+    animation: fadeInUp 1.2s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
 .profile-img-container {
@@ -238,10 +238,10 @@ body {
     left: 150%;
 }
 
-.link-card:nth-child(1) { animation-delay: 0.1s; }
-.link-card:nth-child(2) { animation-delay: 0.2s; }
-.link-card:nth-child(3) { animation-delay: 0.3s; }
-.link-card:nth-child(4) { animation-delay: 0.4s; }
+.link-card:nth-child(1) { animation-delay: 0.2s; }
+.link-card:nth-child(2) { animation-delay: 0.3s; }
+.link-card:nth-child(3) { animation-delay: 0.4s; }
+.link-card:nth-child(4) { animation-delay: 0.5s; }
 
 .link-card i, .link-card .icon-svg {
     width: 24px;
@@ -337,10 +337,10 @@ body {
     animation: floatIcon 4s infinite ease-in-out;
 }
 
-.social-icons a:nth-child(1) { animation-delay: 0s; }
-.social-icons a:nth-child(2) { animation-delay: 0.2s; }
-.social-icons a:nth-child(3) { animation-delay: 0.4s; }
-.social-icons a:nth-child(4) { animation-delay: 0.6s; }
+.social-icons a:nth-child(1) { animation-delay: 0.7s; }
+.social-icons a:nth-child(2) { animation-delay: 0.8s; }
+.social-icons a:nth-child(3) { animation-delay: 0.9s; }
+.social-icons a:nth-child(4) { animation-delay: 1.0s; }
 
 @keyframes floatIcon {
     0%, 100% { transform: translateY(0); }
@@ -386,8 +386,16 @@ body {
 }
 
 @keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(40px); }
-    to { opacity: 1; transform: translateY(0); }
+    from { 
+        opacity: 0; 
+        transform: translateY(30px) scale(0.98);
+        filter: blur(10px);
+    }
+    to { 
+        opacity: 1; 
+        transform: translateY(0) scale(1);
+        filter: blur(0);
+    }
 }
 
 @keyframes fadeIn {
