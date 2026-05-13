@@ -215,7 +215,7 @@ body {
     transition: var(--transition);
     overflow: hidden;
     animation: fadeInUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) both;
-    gap: 1.5rem; /* Better spacing control */
+    gap: 2rem; /* Significantly increased spacing */
 }
 
 .link-card::before {
@@ -251,7 +251,15 @@ body {
 }
 
 #link-calendar i {
-    color: var(--accent-tertiary); /* Use the pink/purple for the calendar to make it stand out */
+    color: var(--accent-tertiary); /* Pink/Purple */
+}
+
+#link-instagram i {
+    color: #E4405F; /* Instagram Official Pink */
+}
+
+#link-linkedin i {
+    color: #0A66C2; /* LinkedIn Official Blue */
 }
 
 .link-card span {

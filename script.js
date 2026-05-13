@@ -40,4 +40,8 @@ document.addEventListener('DOMContentLoaded', () => {
     cards.forEach((card, index) => {
         card.style.animationDelay = `${0.2 + (index * 0.1)}s`;
     });
+    // 6. Initialize Lucide icons
+    if (window.lucide) {
+        lucide.createIcons();
+    }
 });
