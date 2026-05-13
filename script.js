@@ -10,12 +10,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 3. Robust Security: Block Developer Tools and Prevent Content Copying
     
-    const warningHTML = '<div style="display:flex;justify-content:center;align-items:center;height:100vh;background-color:#020203;color:white;font-family:sans-serif;text-align:center;padding:20px;position:fixed;top:0;left:0;width:100%;z-index:9999;"><div><h1 style="font-size:2rem;margin-bottom:1rem;color:#3b82f6;">Acceso Protegido</h1><p style="font-size:1.1rem;opacity:0.8;">Por razones de seguridad y derechos de autor, las herramientas de desarrollo están deshabilitadas.</p><p style="margin-top:2rem;font-size:0.9rem;opacity:0.5;">Cierra el panel de inspección y recarga la página para continuar.</p></div></div>';
+    const warningHTML = '<div style="display:flex;justify-content:center;align-items:center;height:100vh;background-color:#020203;color:white;font-family:sans-serif;text-align:center;padding:20px;position:fixed;top:0;left:0;width:100%;z-index:9999;"><div><h1 style="font-size:2rem;margin-bottom:1rem;color:#3b82f6;">Acceso Protegido</h1><p style="font-size:1.1rem;opacity:0.8;">Por razones de seguridad y derechos de autor, las herramientas de desarrollo están deshabilitadas.</p></div></div>';
 
     const triggerProtection = () => {
-        document.body.innerHTML = warningHTML;
-        document.title = "Acceso Protegido";
-        document.body.style.pointerEvents = 'none';
+        // Destruye el DOM por completo
+        document.write(warningHTML);
+        document.close();
+        // Redirige a una página en blanco para matar el proceso actual
+        window.location.replace("about:blank");
     };
 
     // Block Keyboard Shortcuts and Wipe DOM instantly
@@ -38,7 +40,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     const detectDevTools = () => {
-        // Threshold check for window dimensions
         const threshold = 160;
         const widthDiff = window.outerWidth - window.innerWidth > threshold;
         const heightDiff = window.outerHeight - window.innerHeight > threshold;
@@ -48,19 +49,23 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    // Console getter method
-    const element = new Image();
-    Object.defineProperty(element, 'id', {
-      get: function() {
-          triggerProtection();
-      }
-    });
-    console.log('%c', element);
+    // Trampa de debugger agresiva para detectar DevTools desacopladas (detached)
+    const debuggerTrap = () => {
+        const start = performance.now();
+        debugger;
+        const end = performance.now();
+        if (end - start > 100) {
+            triggerProtection();
+        }
+    };
 
-    // Run detection periodically
-    setInterval(detectDevTools, 500);
+    // Bucle constante
+    setInterval(() => {
+        detectDevTools();
+        debuggerTrap();
+    }, 500);
 
-    // Also trigger on window resize
+    // También al redimensionar
     window.addEventListener('resize', detectDevTools);
 
     // 4. Parallax effect for blobs based on mouse movement
